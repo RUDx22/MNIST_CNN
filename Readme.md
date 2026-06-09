@@ -1,86 +1,35 @@
-\#MNIST DIGIT RECOGNIZATION (for learning purpose):
+Here is a revised version. I removed the emojis and rewrote the text to sound less like a corporate resume and more like a developer naturally explaining their work to another programmer.
 
+Handwritten Digit Recognition with PyTorch
+This is a Convolutional Neural Network (CNN) I built using PyTorch to classify handwritten digits from the MNIST dataset. I wanted to handle the entire deep learning workflow myself, so this project covers everything from setting up the data pipeline to designing the model architecture, training, and testing.
 
+Project Highlights
+Custom Architecture: I built the network using multi-channel convolutional layers paired with max-pooling to shrink the spatial dimensions, followed by fully connected linear layers.
 
-DATASET=from MNIST Digit dataset
+Preventing Overfitting: I added a Dropout layer (0.25 probability) to help the model generalize better and prevent it from just memorizing the training data.
 
-**date:4/4/26**
+Data Handling: I used Torchvision transforms to normalize the images (setting the mean and standard deviation to 0.5) and DataLoaders to keep the batch processing efficient.
 
-**Stage\_1:**
+Hardware Flexibility: The script automatically checks for a GPU (CUDA). If it finds one, it shifts the training there to speed things up; otherwise, it cleanly falls back to the CPU.
 
-&#x09;->data loading
+Tools Used
+Python
 
-&#x09;->normalizing data , converting image to tensors.
+PyTorch (torch.nn, torch.optim)
 
-&#x09;->made two different dataset one for training and testing
+Torchvision
 
-&#x09;->made loaddataset with each batch = 64
+How the Model is Structured
+The network follows a straightforward path from extracting image features to making the final classification:
 
-&#x09;#class,functions
+Conv Layer 1: 1 input channel → 32 output channels, 3x3 kernel, padding=1 (ReLU activation + MaxPool).
 
-&#x09;->class named digit,contains 2 functions 1)init 2)forward
+Conv Layer 2: 32 input channels → 64 output channels, 3x3 kernel, padding=1 (ReLU activation + MaxPool).
 
-&#x09;->contains 2convolution layer for finding features,one pooling for get same output image size as input image and shrink image.
+Flattening: Reshaping the 2D tensor into 1D for the fully connected layers.
 
-&#x09;->used dropout for regularization to avoid overfitting
+Fully Connected 1: 64 * 7 * 7 nodes → 128 nodes (ReLU activation).
 
-&#x09;->used relu for ignoring negative values.
+Dropout: 25% drop probability.
 
-&#x09;->fc1 and fc2 are flatten to convert 2d feature maps to 1d vector for decision making
-
-&#x09;#loss and optimization
-
-&#x09;->crossentropyloss is used as it is classification it calculate confidence of outputs
-
-&#x09;->adam optimizer used to optimize as it also remembers where it was last time in gradient functions
-
-&#x09;
-
-&#x09;#training 
-
-&#x09;we only run it 1 time as dataset with train and test data is  enough to get above 90% accuracy
-
-&#x09;#evaluate
-
-&#x09;tested model is accurate by 1st unseen image from testdata.
-
-
-
-
-
-**Date:4/4/26**
-
-**Stage\_2:**
-
-realized model runs on cpu only even though it has decent gpu.
-
-checked for gpu availability on python library
-
-&#x09;->attached to(device) in model,labels and inputs in training phase
-
-
-
-
-
-GOT ERROR IN TESTING PHASE :
-
-&#x20;  no tensor on same device founded tensor on both cpu and cuda 
-
-&#x20;  modified testing phase:
-
-&#x09;		made new variable called testimage: attached .to(device) so labels and images are on same device
-
-&#x20;                       made output variable for output=model(inputimg)
-
-
-
-
-
-
-
-
-
-**IMPROVEMENT:**
-
-&#x20; model train and testing time reduced compared to stage 1.
-
+Fully Connected 2 (Output): 128 nodes → 10 nodes (representing the digits 0-9).
