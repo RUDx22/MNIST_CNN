@@ -1,6 +1,4 @@
 
-
-Here is a revised version. I removed the emojis and rewrote the text to sound less like a corporate resume and more like a developer naturally explaining their work to another programmer.
 0bb3e9e (accuracy added)
 
 Handwritten Digit Recognition with PyTorch
