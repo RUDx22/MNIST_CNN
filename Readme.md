@@ -1,4 +1,8 @@
 
+
+Here is a revised version. I removed the emojis and rewrote the text to sound less like a corporate resume and more like a developer naturally explaining their work to another programmer.
+0bb3e9e (accuracy added)
+
 Handwritten Digit Recognition with PyTorch
 This is a Convolutional Neural Network (CNN) I built using PyTorch to classify handwritten digits from the MNIST dataset. I wanted to handle the entire deep learning workflow myself, so this project covers everything from setting up the data pipeline to designing the model architecture, training, and testing.
 
@@ -30,5 +34,8 @@ Flattening: Reshaping the 2D tensor into 1D for the fully connected layers.
 Fully Connected 1: 64 * 7 * 7 nodes → 128 nodes (ReLU activation).
 
 Dropout: 25% drop probability.
+
+
+Fully Connected 2 (Output): 128 nodes → 10 nodes (representing the digits 0-9).
 
 Fully Connected 2 (Output): 128 nodes → 10 nodes (representing the digits 0-9).

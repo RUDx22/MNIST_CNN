@@ -43,7 +43,7 @@ optimization=optim.Adam(model.parameters(),lr=0.001)
 #TRAINING YIPEEEE
 print("Training phase...............")
 model.train()
-for epoch in range(1):
+for epoch in range(5):
     running_loss=0.0
     for i,data in enumerate(loadtrain,0):
         inputs,labels=data
@@ -61,7 +61,30 @@ for epoch in range(1):
             running_loss=0.0
 print("Training is finished.................................")
 
+correct = 0
+total = 0
 
+# Set model to evaluation mode
+model.eval()
+
+# We don't need gradients for testing, so disable them to save memory
+with torch.no_grad():
+    for data in loadtest:
+        images, labels = data
+        images = images.to(device)
+        labels = labels.to(device)
+
+        # Get model outputs
+        outputs = model(images)
+
+        # Get the class with the highest probability
+        _, predicted = torch.max(outputs.data, 1)
+
+        # Update totals
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print(f'Accuracy of the model on the 10000 test images: {100 * correct / total:.2f}%')
 #TESTING EVALUATION STUFF
 model.eval()
 dataiter=iter(loadtest)
