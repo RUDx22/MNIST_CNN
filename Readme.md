@@ -1,4 +1,4 @@
-
+Accuracy=99.7%  (70000 images)
 0bb3e9e (accuracy added)
 
 Handwritten Digit Recognition with PyTorch
