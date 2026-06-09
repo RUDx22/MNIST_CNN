@@ -1,4 +1,3 @@
-Here is a revised version. I removed the emojis and rewrote the text to sound less like a corporate resume and more like a developer naturally explaining their work to another programmer.
 
 Handwritten Digit Recognition with PyTorch
 This is a Convolutional Neural Network (CNN) I built using PyTorch to classify handwritten digits from the MNIST dataset. I wanted to handle the entire deep learning workflow myself, so this project covers everything from setting up the data pipeline to designing the model architecture, training, and testing.
